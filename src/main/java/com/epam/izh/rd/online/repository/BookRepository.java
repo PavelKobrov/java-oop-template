@@ -1,5 +1,6 @@
 package com.epam.izh.rd.online.repository;
 
+import com.epam.izh.rd.online.entity.Author;
 import com.epam.izh.rd.online.entity.Book;
 
 /**
@@ -35,6 +36,11 @@ public interface BookRepository<T extends Book> {
     T[] findByName(String name);
 
     /**
+     * Метод должен находить количество сохраненных книг по конкретному имени книги.
+     */
+    int getNumberOfBooksByName(String name);
+
+    /**
      * Метод должен удалять книги из массива schoolBooks по названию.
      * Если книг с одинаковым названием в массиве несколько, метод должен удалить их все.
      * <p>
@@ -45,10 +51,20 @@ public interface BookRepository<T extends Book> {
      * Если хотя бы одна книга была найдена и удалена, метод должен вернуть true, в противном случае,
      * если книга не была найдена, метод должен вернуть false.
      */
+
     boolean removeByName(String name);
 
     /**
      * Метод возвращает количество сохраненных сущностей в массиве schoolBooks.
      */
     int count();
+
+    /**
+     * Метод должен возвращать автора книги по названию книги.
+     *
+     * То есть приждется сходить и в репозиторий с книгами и в сервис авторов.
+     *
+     * Если такой книги не найдено, метод должен вернуть null.
+     */
+    Author findAuthorByBookName(String name);
 }
